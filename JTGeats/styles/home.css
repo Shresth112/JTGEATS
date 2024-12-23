@@ -17,7 +17,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: auto;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -49,19 +49,30 @@ nav {
     align-items: center;
 }
 
-.nav-icons svg {
-    fill: #fff;
-    width: 24px;
-    height: 24px;
+.nav-icons a {
+    color: #fff;
     margin-left: 20px;
-    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.2s, color 0.2s;
 }
+
+.nav-icons a:hover {
+    transform: scale(1.1);
+    color: #ff6347;
+}
+
+.search-icon{
+    color: #fff;
+    
+}
+
+
 
 .hero {
     background-color: #1AC073;
     color: #fff;
     padding: 100px 20px;
-    width: 100%;
+    width: auto;
     height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -160,6 +171,14 @@ nav {
     .search-section input[type="text"] {
         width: calc(100% - 100px);
     }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-icons .menu-icon {
+        display: block;
+    }
 }
 
 .home-kitchen {
@@ -209,7 +228,7 @@ nav {
     margin-bottom: 10px;
 }
 
-.rating i {
+.rating {
     color: #ff6347;
 }
 

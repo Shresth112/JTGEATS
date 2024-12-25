@@ -27,11 +27,15 @@ nav {
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .nav-links li {
@@ -41,7 +45,6 @@ nav {
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    font-weight: bold;
 }
 
 .nav-icons {
@@ -93,7 +96,7 @@ nav {
     margin-right: 20px;
 }
 
-.hero h1 {
+.hero h2 {
     font-size: 48px;
     margin-bottom: 20px;
 }
@@ -101,6 +104,7 @@ nav {
 .hero p {
     font-size: 24px;
     margin-bottom: 20px;
+    font-weight: 100;
 }
 
 .hero .btn {
@@ -126,6 +130,7 @@ nav {
 
 .search-section {
     margin-top: 20px;
+    display: flex;
 }
 
 .search-section input[type="text"] {
@@ -138,7 +143,7 @@ nav {
 
 .search-section button {
     padding: 10px;
-    background: #333;
+    background: #ff8c00;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -149,6 +154,8 @@ nav {
     .hero {
         flex-direction: column;
         text-align: center;
+        height: auto;
+        padding: 50px 20px;
     }
 
     .hero .container {
@@ -161,8 +168,21 @@ nav {
         margin-bottom: 20px;
     }
 
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .hero .btn {
+        padding: 10px 15px;
+    }
+
     .hero-image {
         max-width: 100%;
+        margin-top: 20px;
     }
 
     .search-section input[type="text"] {
@@ -218,7 +238,7 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     position: relative;
-    width: 280px;
+    width: 100%;
 }
 
 .card img {
@@ -256,17 +276,16 @@ nav {
     height: 40px;
 }
 
-.card-footer{
+.card-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 20px;
     width: 120px;
     font-size: 14px;
-    
 }
 
-.delivery{
+.delivery {
     display: flex;
     background-color: #ffffff;
     border-radius: 5px;
@@ -276,10 +295,9 @@ nav {
     padding: 3px;
     font-size: smaller;
     align-items: center;
-
 }
 
-.delivery-time{
+.delivery-time {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,7 +306,8 @@ nav {
     height: 22px;
     border-radius: 5px;
 }
-.rating{
+
+.rating {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -354,7 +373,7 @@ nav {
 }
 
 .counter-container button {
-    background-color: #1AC073;
+    background-color: #ff8c00;
     color: white;
     border: none;
     border-radius: 5px;
@@ -362,10 +381,6 @@ nav {
     height: 22px;
     font-size: 15px;
     cursor: pointer;
-}
-
-.counter-container button:hover {
-    background-color: #148A55;
 }
 
 .counter {
@@ -389,5 +404,93 @@ footer {
 @media (max-width: 768px) {
     .card-container {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: auto;
+    padding: 20px 0;
+}
+
+/* Slider Wrapper */
+.slider-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    transition: transform 0.4s ease;
+    gap: 100px; /* Space between cards */
+    will-change: transform;
+    width: auto ;
+}
+
+/* Individual Slider Item */
+.slider-item {
+    flex: 0 0 calc((100% / 2) - 20px); /* Adjust to show 2 cards at a time with gaps */
+    max-width: calc((100% / 2) - 20px); /* Subtract gap size to maintain proper spacing */
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    margin: 0; /* Ensure no extra margin */
+}
+
+/* Navigation Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.slider-btn:hover {
+    background: #1e7a39;
+    transform: scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* Adjust for Smaller Screens */
+@media (max-width: 1024px) {
+    .slider-item {
+        flex: 0 0 calc((100% / 2) - 15px); /* Show 2 cards at a time with gaps */
+        max-width: calc((100% / 2) - 15px);
+        margin: 0 7.5px; /* Add horizontal margin for gaps */
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-item {
+        flex: 0 0 calc(100% - 20px); /* Show 1 card at a time with gaps */
+        max-width: calc(100% - 20px);
+        margin: 0 10px; /* Add horizontal margin for gaps */
+    }
+
+    .slider-btn {
+        padding: 8px 12px;
+        font-size: 18px;
     }
 }

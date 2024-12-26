@@ -45,29 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let currentSlideIndex = 0;
+  let autoSlideInterval;
+  const autoSlideDelay = 3000; // Time interval for auto-slide
+  const manualSlidePauseDuration = 5000; // Pause auto-slide for 5 seconds after a manual interaction
 
+  // Update track position
   function updateTrackPosition() {
     const newPosition = -(currentSlideIndex * slideCardWidth);
     carouselTrack.style.transform = `translateX(${newPosition}px)`;
     carouselTrack.style.transition = "transform 0.5s ease-in-out";
   }
 
+  // Slide left
   function slideLeft() {
-    // Move to the previous slide; wrap to the last card if at the beginning
-    currentSlideIndex = (currentSlideIndex - 1 + totalCards) % totalCards;
+    currentSlideIndex = (currentSlideIndex - 1 + totalCards) % totalCards; // Wrap to the last card
     updateTrackPosition();
+    resetAutoSlide();
   }
 
+  // Slide right
   function slideRight() {
-    // Move to the next slide; wrap to the first card if at the end
-    currentSlideIndex = (currentSlideIndex + 1) % totalCards;
+    currentSlideIndex = (currentSlideIndex + 1) % totalCards; // Wrap to the first card
     updateTrackPosition();
+    resetAutoSlide();
   }
 
-  // Auto slide
-  setInterval(() => {
-    slideRight();
-  }, 3000);
+  // Reset auto-slide with a delay
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval); // Stop auto-slide
+    autoSlideInterval = setInterval(() => {
+      slideRight();
+    }, autoSlideDelay); // Restart auto-slide after a pause
+  }
+
+  // Initialize auto-slide
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      slideRight();
+    }, autoSlideDelay);
+  }
 
   // Attach click handlers to the left and right buttons
   const leftButton = document.querySelector(".carousel-btn.left");
@@ -79,4 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Carousel buttons not found!");
   }
+
+  // Start the auto-slide
+  startAutoSlide();
 });

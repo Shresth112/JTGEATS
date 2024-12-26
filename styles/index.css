@@ -600,7 +600,7 @@ footer {
 }
 
 #about-service .video-section {
-    background: linear-gradient(to bottom, white 50%, #dff5e2 50%);
+    background: linear-gradient(to bottom, white 50%, #9fffacdf 50%);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f4f4f9;
+    background-color: #ffffff;
     color: #333;
 }
 
@@ -408,89 +408,215 @@ footer {
 }
 
 /* Slider Container */
-.slider-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+
+#popular-items {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .carousel-container {
     position: relative;
-    width: auto;
-    max-width: 1200px;
     overflow: hidden;
-    margin: auto;
-    padding: 20px 0;
-}
-
-/* Slider Wrapper */
-.slider-wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    transition: transform 0.4s ease;
-    gap: 100px; /* Space between cards */
-    will-change: transform;
-    width: auto ;
-}
-
-/* Individual Slider Item */
-.slider-item {
-    flex: 0 0 calc((100% / 2) - 20px); /* Adjust to show 2 cards at a time with gaps */
-    max-width: calc((100% / 2) - 20px); /* Subtract gap size to maintain proper spacing */
     display: flex;
     justify-content: center;
-}
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .carousel {
+    overflow: hidden;
+    width: 80%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
 
-.card {
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-track.no-transition {
+    transition: none; /* Disable transition when looping back */
+  }
+  
+  
+  .slider-card {
+    flex: 0 0 300px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .slider-card img {
     width: 100%;
-    margin: 0; /* Ensure no extra margin */
-}
-
-/* Navigation Buttons */
-.slider-btn {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .slider-card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .slider-card p {
+    font-size: 1rem;
+    color: #444;
+  }
+  
+  .slider-card span {
+    display: block;
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  /* Buttons for navigation */
+  .carousel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(1);
     background: #28a745;
-    color: #fff;
+    color: white;
     border: none;
-    padding: 10px 15px;
-    cursor: pointer;
     border-radius: 50%;
-    z-index: 10;
-    font-size: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.slider-btn:hover {
-    background: #1e7a39;
-    transform: scale(1.1);
-}
-
-.prev-btn {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+  }
+  
+  .carousel-btn:hover {
+    transform: translateY(-50%) scale(1.2); /* Slightly larger on hover */
+    background: #218838;
+  }
+  
+  .carousel-btn.left {
     left: 10px;
-}
-
-.next-btn {
+  }
+  
+  .carousel-btn.right {
     right: 10px;
+  }
+  
+  /* Smooth sliding effect for transitions */
+  .carousel-track {
+    transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+  }
+  
+  /* Additional hover effects for the cards */
+  .slider-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Button to request a dish */
+  .request-dish-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .request-dish-btn:hover {
+    background: #218838;
+  }
+  
+  /* Media queries for responsive design */
+  @media screen and (max-width: 768px) {
+    .carousel {
+      width: 100%; /* Full width for smaller screens */
+    }
+  
+    .slider-card {
+      flex: 0 0 90%; /* Make cards larger on smaller screens */
+    }
+  
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .slider-card {
+      flex: 0 0 100%; /* Make cards full width on very small screens */
+    }
+  
+    .carousel-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+  }
+  
+
+/* Video Section */
+.full-width {
+    width: 100%;
+    margin: 0;
+    padding-bottom: 10px;
+    box-sizing: border-box;
 }
 
-/* Adjust for Smaller Screens */
-@media (max-width: 1024px) {
-    .slider-item {
-        flex: 0 0 calc((100% / 2) - 15px); /* Show 2 cards at a time with gaps */
-        max-width: calc((100% / 2) - 15px);
-        margin: 0 7.5px; /* Add horizontal margin for gaps */
-    }
+#about-service {
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    .slider-item {
-        flex: 0 0 calc(100% - 20px); /* Show 1 card at a time with gaps */
-        max-width: calc(100% - 20px);
-        margin: 0 10px; /* Add horizontal margin for gaps */
-    }
+#about-service .text-content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-    .slider-btn {
-        padding: 8px 12px;
-        font-size: 18px;
-    }
+#about-service .text-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.5;
+}
+
+#about-service .text-content p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+#about-service .video-section {
+    background: linear-gradient(to bottom, white 50%, #dff5e2 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#about-service .video-container {
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    padding-bottom: 75px;
+    overflow: hidden;
+}
+
+#about-service #service-video {
+    width: 100%;
+    height: 100%;
+    border: none;
 }

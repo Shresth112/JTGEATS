@@ -32,106 +32,51 @@ document.querySelectorAll('.decrement-btn').forEach(button => {
   });
 });
 
-const slider = document.getElementById("slider");
-const prevBtn1 = document.getElementById("prevBtn");
-const nextBtn1 = document.getElementById("nextBtn");
-
-// Clone the first and last cards for the circular effecta
-const sliderCards = slider.children;
-const firstCard = sliderCards[0].cloneNode(true);
-const lastCard = sliderCards[sliderCards.length - 1].cloneNode(true);
-
-// Add clones to the slider
-slider.appendChild(firstCard);
-slider.insertBefore(lastCard, sliderCards[0]);
-
-// Variables to control the slider
-let currentIndex1 = 1;
-const cardWidth = sliderCards[0].offsetWidth + 20;
-
-// Initial positioning
-slider.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
-
-// Event listeners for buttons
-nextBtn1.addEventListener("click", () => {
-  if (currentIndex1 >= sliderCards.length - 1) {
-    slider.style.transition = "none";
-    currentIndex1 = 1;
-    slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-    setTimeout(() => {
-      slider.style.transition = "transform 0.5s ease";
-      currentIndex1++;
-      slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-    }, 0);
-  } else {
-    currentIndex1++;
-    slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-  }
-});
-
-prevBtn1.addEventListener("click", () => {
-  if (currentIndex1 <= 0) {
-    slider.style.transition = "none";
-    currentIndex1 = sliderCards.length - 2;
-    slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-    setTimeout(() => {
-      slider.style.transition = "transform 0.5s ease";
-      currentIndex1--;
-      slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-    }, 0);
-  } else {
-    currentIndex1--;
-    slider.style.transform = `translateX(-${cardWidth * currentIndex1}px)`;
-  }
-});
-
 // Slider
+document.addEventListener("DOMContentLoaded", () => {
+  const carouselTrack = document.querySelector('.carousel-track');
+  const sliderCards = document.querySelectorAll('.slider-card');
+  const slideCardWidth = 320; // Width of a single card including margin
+  const totalCards = sliderCards.length;
 
+  if (!carouselTrack) {
+    console.error("Carousel track element not found!");
+    return;
+  }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector(".carousel");
-  const arrowBtns = document.querySelectorAll(".slider-btn");
-  const firstCard = carousel.querySelector(".card");
-  const firstCardWidth = firstCard.offsetWidth;
-  let isDragging = false,
-      startX,
-      startScrollLeft;
+  let currentSlideIndex = 0;
 
-  const dragStart = (e) => {
-      isDragging = true;
-      startX = e.pageX || e.touches[0].pageX;
-      startScrollLeft = carousel.scrollLeft;
-  };
+  function updateTrackPosition() {
+    const newPosition = -(currentSlideIndex * slideCardWidth);
+    carouselTrack.style.transform = `translateX(${newPosition}px)`;
+    carouselTrack.style.transition = "transform 0.5s ease-in-out";
+  }
 
-  const dragging = (e) => {
-      if (!isDragging) return;
-      const x = e.pageX || e.touches[0].pageX;
-      carousel.scrollLeft = startScrollLeft - (x - startX);
-  };
+  function slideLeft() {
+    // Move to the previous slide; wrap to the last card if at the beginning
+    currentSlideIndex = (currentSlideIndex - 1 + totalCards) % totalCards;
+    updateTrackPosition();
+  }
 
-  const dragStop = () => {
-      isDragging = false;
-  };
+  function slideRight() {
+    // Move to the next slide; wrap to the first card if at the end
+    currentSlideIndex = (currentSlideIndex + 1) % totalCards;
+    updateTrackPosition();
+  }
 
-  const autoPlay = () => {
-      if (window.innerWidth < 800) return;
-      setInterval(() => {
-          carousel.scrollLeft += firstCardWidth;
-      }, 3000);
-  };
+  // Auto slide
+  setInterval(() => {
+    slideRight();
+  }, 3000);
 
-  arrowBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-          carousel.scrollLeft += btn.id === "left" ? -firstCardWidth : firstCardWidth;
-      });
-  });
+  // Attach click handlers to the left and right buttons
+  const leftButton = document.querySelector(".carousel-btn.left");
+  const rightButton = document.querySelector(".carousel-btn.right");
 
-  carousel.addEventListener("mousedown", dragStart);
-  carousel.addEventListener("mousemove", dragging);
-  carousel.addEventListener("mouseup", dragStop);
-  carousel.addEventListener("touchstart", dragStart);
-  carousel.addEventListener("touchmove", dragging);
-  carousel.addEventListener("touchend", dragStop);
-
-  autoPlay();
+  if (leftButton && rightButton) {
+    leftButton.addEventListener("click", slideLeft);
+    rightButton.addEventListener("click", slideRight);
+  } else {
+    console.error("Carousel buttons not found!");
+  }
 });

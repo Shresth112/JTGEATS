@@ -696,7 +696,7 @@ form textarea {
 
 form button {
     background-color: #1AC073;
-    width: 30%;;
+    width: 30%; /* Adjust width */
     color: white;
     border: none;
     padding: 15px 15px 15px;
@@ -835,6 +835,10 @@ form button:hover {
         padding-right: 0; /* Remove right padding */
     }
 
+    form button {
+        width: 50%; /* Adjust width for smaller screens */
+    }
+
     .footer {
         padding: 20px 40px; /* Reduce padding */
     }
@@ -853,6 +857,10 @@ form button:hover {
 
     .contact-section {
         padding: 20px; /* Further reduce padding */
+    }
+
+    form button {
+        width: 100%; /* Full width for very small screens */
     }
 
     .footer {

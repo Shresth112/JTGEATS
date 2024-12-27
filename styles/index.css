@@ -639,6 +639,7 @@ footer {
     overflow: hidden;
     width: 100%;
     padding: 20px 80px;
+    flex-wrap: wrap; /* Allow wrapping */
 }
 
 .contact-container {
@@ -648,6 +649,7 @@ footer {
     width: 100%;
     margin: 0 auto;
     padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping */
 }
 
 .form-container {
@@ -656,7 +658,9 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 100%; /* Full width on smaller screens */
+    max-width: 600px; /* Limit max width */
+    margin-bottom: 20px; /* Add margin for spacing */
 }
 
 .form-container h2 {
@@ -711,7 +715,8 @@ form button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%; /* Full width on smaller screens */
+    max-width: 600px; /* Limit max width */
 }
 
 .image-container img {
@@ -745,6 +750,7 @@ form button:hover {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    flex-wrap: wrap; /* Allow wrapping */
 }
 
 .footer::after {
@@ -764,12 +770,16 @@ form button:hover {
     font-size: 18px;
     font-weight: bold;
     z-index: 1;
+    margin-bottom: 20px; /* Add margin for spacing */
 }
 
 .footer nav {
     display: flex;
     gap: 15px;
     z-index: 1;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center align on smaller screens */
+    margin-bottom: 20px; /* Add margin for spacing */
 }
 
 .footer nav a {
@@ -787,6 +797,7 @@ form button:hover {
     display: flex;
     gap: 10px;
     z-index: 1;
+    justify-content: center; /* Center align on smaller screens */
 }
 
 .footer .social-icons a {
@@ -799,3 +810,52 @@ form button:hover {
 .footer .social-icons a:hover {
     color: #cce7cc;
 }
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .carousel {
+      width: 100%; /* Full width for smaller screens */
+    }
+  
+    .slider-card {
+      flex: 0 0 90%; /* Cards occupy 90% of the width */
+    }
+  
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+
+    .contact-section {
+        padding: 20px 40px; /* Reduce padding */
+    }
+
+    .form-container {
+        padding-right: 0; /* Remove right padding */
+    }
+
+    .footer {
+        padding: 20px 40px; /* Reduce padding */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .slider-card {
+      flex: 0 0 100%; /* Full-width cards for very small screens */
+    }
+  
+    .carousel-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+
+    .contact-section {
+        padding: 20px; /* Further reduce padding */
+    }
+
+    .footer {
+        padding: 20px; /* Further reduce padding */
+    }
+  }

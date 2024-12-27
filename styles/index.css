@@ -300,26 +300,25 @@ nav {
     font-size: 14px;
 }
 
+.delivery-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dfdfdf;
+    width: 68px;
+    height: 22px;
+    border-radius: 5px;
+}
+
 .delivery {
     display: flex;
     background-color: #ffffff;
     border-radius: 5px;
     margin-top: 0%;
-    width: 55px;
-    height: 16px;
+    height: 22px;
     padding: 3px;
     font-size: smaller;
     align-items: center;
-}
-
-.delivery-time {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ededed;
-    width: 68px;
-    height: 22px;
-    border-radius: 5px;
 }
 
 .rating {

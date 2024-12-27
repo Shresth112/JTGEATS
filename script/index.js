@@ -33,69 +33,105 @@ document.querySelectorAll('.decrement-btn').forEach(button => {
 });
 
 // Slider
-document.addEventListener("DOMContentLoaded", () => {
-  const carouselTrack = document.querySelector('.carousel-track');
-  const sliderCards = document.querySelectorAll('.slider-card');
-  const slideCardWidth = 320; // Width of a single card including margin
-  const totalCards = sliderCards.length;
 
-  if (!carouselTrack) {
-    console.error("Carousel track element not found!");
-    return;
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const carouselTrack = document.querySelector(".carousel-track");
+  const sliderCards = document.querySelectorAll(".slider-card");
+  const leftButton = document.querySelector(".carousel-btn.left");
+  const rightButton = document.querySelector(".carousel-btn.right");
+  const totalCards = sliderCards.length;
+  const visibleCards = 3; // Number of cards visible at a time
+  const cardWidth = 300 + 20; // Card width (300px) + margin (10px each side)
 
   let currentSlideIndex = 0;
   let autoSlideInterval;
-  const autoSlideDelay = 3000; // Time interval for auto-slide
-  const manualSlidePauseDuration = 5000; // Pause auto-slide for 5 seconds after a manual interaction
+  const autoSlideDelay = 3000;
 
-  // Update track position
+  // Clone first and last few cards for infinite scrolling effect
+  const cloneFirst = [];
+  const cloneLast = [];
+  for (let i = 0; i < visibleCards; i++) {
+    cloneFirst.push(sliderCards[i].cloneNode(true));
+    cloneLast.push(sliderCards[totalCards - 1 - i].cloneNode(true));
+  }
+  cloneFirst.forEach(card => carouselTrack.appendChild(card));
+  cloneLast.reverse().forEach(card => carouselTrack.insertBefore(card, carouselTrack.firstChild));
+
+  // Update the track position
   function updateTrackPosition() {
-    const newPosition = -(currentSlideIndex * slideCardWidth);
+    const newPosition = -(currentSlideIndex * cardWidth);
     carouselTrack.style.transform = `translateX(${newPosition}px)`;
     carouselTrack.style.transition = "transform 0.5s ease-in-out";
+    updateHoverState();
+  }
+
+  // Update hover state for the middle card
+  function updateHoverState() {
+    const allCards = document.querySelectorAll(".carousel-track .slider-card");
+    allCards.forEach((card, index) => {
+      card.classList.toggle(
+        "middle",
+        index === currentSlideIndex + Math.floor(visibleCards / 2)
+      );
+    });
   }
 
   // Slide left
   function slideLeft() {
-    currentSlideIndex = (currentSlideIndex - 1 + totalCards) % totalCards; // Wrap to the last card
-    updateTrackPosition();
+    if (currentSlideIndex === 0) {
+      currentSlideIndex = totalCards;
+      carouselTrack.style.transition = "none";
+      updateTrackPosition();
+      setTimeout(() => {
+        currentSlideIndex--;
+        carouselTrack.style.transition = "transform 0.5s ease-in-out";
+        updateTrackPosition();
+      }, 20);
+    } else {
+      currentSlideIndex--;
+      updateTrackPosition();
+    }
     resetAutoSlide();
   }
 
   // Slide right
   function slideRight() {
-    currentSlideIndex = (currentSlideIndex + 1) % totalCards; // Wrap to the first card
-    updateTrackPosition();
+    if (currentSlideIndex === totalCards) {
+      currentSlideIndex = 0;
+      carouselTrack.style.transition = "none";
+      updateTrackPosition();
+      setTimeout(() => {
+        currentSlideIndex++;
+        carouselTrack.style.transition = "transform 0.5s ease-in-out";
+        updateTrackPosition();
+      }, 20);
+    } else {
+      currentSlideIndex++;
+      updateTrackPosition();
+    }
     resetAutoSlide();
   }
 
-  // Reset auto-slide with a delay
+  // Reset auto-slide
   function resetAutoSlide() {
-    clearInterval(autoSlideInterval); // Stop auto-slide
+    clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => {
       slideRight();
-    }, autoSlideDelay); // Restart auto-slide after a pause
+    }, autoSlideDelay);
   }
 
-  // Initialize auto-slide
+  // Start auto-slide
   function startAutoSlide() {
     autoSlideInterval = setInterval(() => {
       slideRight();
     }, autoSlideDelay);
   }
 
-  // Attach click handlers to the left and right buttons
-  const leftButton = document.querySelector(".carousel-btn.left");
-  const rightButton = document.querySelector(".carousel-btn.right");
+  // Attach event listeners
+  leftButton.addEventListener("click", slideLeft);
+  rightButton.addEventListener("click", slideRight);
 
-  if (leftButton && rightButton) {
-    leftButton.addEventListener("click", slideLeft);
-    rightButton.addEventListener("click", slideRight);
-  } else {
-    console.error("Carousel buttons not found!");
-  }
-
-  // Start the auto-slide
+  // Initialize carousel
+  updateTrackPosition();
   startAutoSlide();
 });

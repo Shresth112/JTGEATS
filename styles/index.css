@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -198,6 +207,10 @@ nav {
     }
 }
 
+
+/* Home Kitchen */
+
+
 .home-kitchen {
     padding: 50px 20px;
     text-align: center;
@@ -207,7 +220,9 @@ nav {
 .home-kitchen h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #ff6347;
+    color: #000000;
+    text-align: left;
+    padding: 15px 80px;
 }
 
 /* Card Container */
@@ -408,8 +423,6 @@ footer {
 }
 
 /* Slider Container */
-
-
 #popular-items {
     text-align: center;
     padding: 40px;
@@ -426,38 +439,34 @@ footer {
   
   .carousel {
     overflow: hidden;
-    width: 80%;
+    width: calc(3 * 320px); /* Width to display exactly 3 cards */
+    position: relative;
+    margin: 20px auto;
   }
   
   .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: calc(3 * 320px + 6 * 320px); /* Adjust width to accommodate cloned cards */
   }
-
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .carousel-track.no-transition {
-    transition: none; /* Disable transition when looping back */
-  }
-  
   
   .slider-card {
-    flex: 0 0 300px;
+    flex: 0 0 300px; /* Each card is 300px wide */
     margin: 10px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     overflow: hidden;
+    transform: scale(1); /* Default scale */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
   
   .slider-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 10px 10px 0 0;
   }
   
   .slider-card h3 {
@@ -466,41 +475,46 @@ footer {
     color: #333;
   }
   
-  .slider-card p {
+  .slider-card p,
+  .slider-card span {
     font-size: 1rem;
     color: #444;
   }
   
-  .slider-card span {
-    display: block;
-    margin: 5px 0;
-    font-size: 0.9rem;
-    color: #777;
+  /* Highlight the middle card */
+  .slider-card.middle {
+    transform: scale(1.05); /* Adjust scale as needed */
+    z-index: 1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
+  
+
+  
   
   /* Buttons for navigation */
   .carousel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%) scale(1);
-    background: #28a745;
-    color: white;
-    border: none;
+    transform: translateY(-50%);
+    background: #fff;
+    color: #28a745;
+    border: 3px solid #28a745;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     cursor: pointer;
     font-size: 1.5rem;
-    z-index: 100;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
   }
   
   .carousel-btn:hover {
-    transform: translateY(-50%) scale(1.2); /* Slightly larger on hover */
-    background: #218838;
+    background: #28a745;
+    color: #fff;
   }
   
   .carousel-btn.left {
@@ -509,21 +523,11 @@ footer {
   
   .carousel-btn.right {
     right: 10px;
+    background: #28a745;
+    color: #fff;
   }
   
-  /* Smooth sliding effect for transitions */
-  .carousel-track {
-    transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
-  }
-  
-  /* Additional hover effects for the cards */
-  .slider-card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Button to request a dish */
+  /* Request dish button */
   .request-dish-btn {
     margin-top: 20px;
     padding: 10px 20px;
@@ -533,20 +537,21 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s ease;
   }
   
   .request-dish-btn:hover {
     background: #218838;
   }
   
-  /* Media queries for responsive design */
+  /* Responsive design */
   @media screen and (max-width: 768px) {
     .carousel {
       width: 100%; /* Full width for smaller screens */
     }
   
     .slider-card {
-      flex: 0 0 90%; /* Make cards larger on smaller screens */
+      flex: 0 0 90%; /* Cards occupy 90% of the width */
     }
   
     .carousel-btn {
@@ -558,7 +563,7 @@ footer {
   
   @media screen and (max-width: 480px) {
     .slider-card {
-      flex: 0 0 100%; /* Make cards full width on very small screens */
+      flex: 0 0 100%; /* Full-width cards for very small screens */
     }
   
     .carousel-btn {
@@ -568,12 +573,12 @@ footer {
     }
   }
   
+ 
 
 /* Video Section */
 .full-width {
     width: 100%;
     margin: 0;
-    padding-bottom: 10px;
     box-sizing: border-box;
 }
 
@@ -619,4 +624,178 @@ footer {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+
+/* Contact Section */
+
+.contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f0f0f0; /* Bland background color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 80px;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-container {
+    flex: 1;
+    padding-right: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-container p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+form textarea {
+    resize: none;
+    height: 130px;
+}
+
+form button {
+    background-color: #1AC073;
+    width: 30%;;
+    color: white;
+    border: none;
+    padding: 15px 15px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #17ef8a;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+/* footer {
+    background: #1AC073;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+} */
+
+/* Footer */
+
+.footer {
+    background-color: #1AC073;
+    color: white;
+    width: 100%;
+    padding: 40px 80px; /* Increased height and added left-right padding */
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    top: 75%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    margin: 0 80px 0 80px;
+    background-color: white;
+    opacity: 0.6;
+    transform: translateY(-50%);
+}
+
+.footer .logo {
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.footer nav {
+    display: flex;
+    gap: 15px;
+    z-index: 1;
+}
+
+.footer nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer nav a:hover {
+    color: #cce7cc;
+}
+
+.footer .social-icons {
+    display: flex;
+    gap: 10px;
+    z-index: 1;
+}
+
+.footer .social-icons a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+    color: #cce7cc;
 }

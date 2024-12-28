@@ -135,3 +135,19 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTrackPosition();
   startAutoSlide();
 });
+
+
+
+// Cart Modal
+
+// Show the modal when the cart icon is clicked
+document.getElementById('cart-icon').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent default action of the link
+  document.getElementById('cart-modal').style.display = 'block'; // Show the modal
+});
+
+// Close the modal when the close button is clicked
+document.getElementById('close-modal').addEventListener('click', function() {
+  document.getElementById('cart-modal').style.display = 'none'; // Hide the modal
+});
+

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
@@ -253,7 +254,8 @@ nav {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     position: relative;
-    width: 100%;
+    width: 277px;
+    height: 337px;
 }
 
 .card img {
@@ -265,12 +267,15 @@ nav {
     position: absolute;
     top: 1px;
     left: 2px;
-    background: yellow;
+    background: #F3BA00;
     color: black;
     font-size: 14px;
-    font-weight: bold;
-    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px 0px 0px 0px;
+    width: 29px;
+    height: 30px;
 }
 
 .card-content {
@@ -532,7 +537,7 @@ footer {
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background: #28a745;
+    background: #1AC073;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -604,7 +609,7 @@ footer {
 }
 
 #about-service .video-section {
-    background: linear-gradient(to bottom, white 50%, #9fffacdf 50%);
+    background: linear-gradient(to bottom, white 50%, #C7EACC 50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -613,8 +618,8 @@ footer {
 
 #about-service .video-container {
     width: 100%;
-    max-width: 700px;
-    height: 400px;
+    max-width: 877px;
+    height: 442px;
     padding-bottom: 75px;
     overflow: hidden;
 }
@@ -729,13 +734,6 @@ form button:hover {
     flex-direction: row;
     gap: 15px;
 }
-
-/* footer {
-    background: #1AC073;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-} */
 
 /* Footer */
 
@@ -866,3 +864,164 @@ form button:hover {
         padding: 20px; /* Further reduce padding */
     }
   }
+
+  /* Model color */
+:root {
+    --primary-color: #1ac073;
+    --secondary-color: #f0faf7;
+    --tertiary-color: #f2f2f2;
+    --highlight-color: #2ebf91;
+    --text-color: #000;
+    --text-muted: #7a7a7a;
+    --white: #fff;
+}
+
+
+  /* cart model */
+
+  .modal {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 1000px;
+    background-color: #f0faf7;
+    color: #000000db;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+    overflow: hidden;
+}
+
+.cart-model-paragraph{
+    color: #7a7a7a;
+}
+
+.modal-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cart-model-heading {
+    margin: 0;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+.cart-model-paragraph {
+    margin: 0;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.5;
+}
+
+#close-modal {
+    margin-top: 3rem;
+    padding: 1.3rem 3.5rem;
+    background-color: #1AC073;
+    border-radius: 10px;
+    color: #ffffff;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+
+/* Request a dish */
+
+.dish-modal {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 550px;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    background-color: var(--secondary-color);
+}
+
+.dish-modal-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.request-dish-heading {
+    margin: 3rem;
+    font-size: 3rem;
+}
+
+.dish-model-input-details {
+    margin: 1rem;
+    width: 85%;
+}
+
+.name-section {
+    width: 100%;
+    height: 20px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.dish-modal-name {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    border: none;
+}
+
+.dish-modal-upload-image {
+    width: 100%;
+    height: 20px;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    margin-top: 2rem;
+}
+
+.dish-modal-upload-image-input {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    border: none;
+}
+
+.dish-model-button-section {
+    display: flex;
+    margin-top: 4rem;
+    gap: 1rem;
+}
+
+.close-dish-model-cancel-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 1rem 4.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+.close-dish-modal-submit-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 1rem 3rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 7px;
+    font-size: 1rem;
+} 

@@ -26,7 +26,17 @@
                     <img src="assets/svg/icons8-search.svg" alt="Search Icon"
                         style="width: 24px; height: 24px; filter: invert(1);">
                 </a>
-                <div class="cartIcon" style="display: flex; align-items: center;">
+                <!-- Modal Structure -->
+                <div id="cart-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <!-- Add your modal content here, e.g., cart items, images, etc. -->
+                        <img src="assets/svg/akar-icons_shopping-bag.svg" alt="Cart icon">
+                        <h1 class="cart-model-heading">Cart is Empty</h1>
+                        <p class="cart-model-paragraph">Add some items to the cart to checkout</p>
+                        <button id="close-modal">Back to Menu</button>
+                    </div>
+                </div>
+                <div id="cart-icon" class="cartIcon" style="display: flex; align-items: center;">
                     <a href="cart.html" class="cart-icon">
                         <img src="assets/svg/akar-icons_shopping-bag.svg" alt="Cart Icon"
                             style="width: 24px; height: 24px;">
@@ -84,7 +94,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
                     <img src="assets/img/pizza_2.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -111,7 +120,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
+                    <div class="badge">20%</div>
                     <img src="assets/img/pizza_3.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -138,7 +147,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
                     <img src="assets/img/pizza_4.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -192,7 +200,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
                     <img src="assets/img/pizza_6.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -219,7 +226,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
+                    <div class="badge">20%</div>
                     <img src="assets/img/pizza_7.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -300,7 +307,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
                     <img src="assets/img/pizza_1.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -327,7 +333,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
+                    <div class="badge">20%</div>
                     <img src="assets/img/pizza_5.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -354,7 +360,6 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="badge">50%</div>
                     <img src="assets/img/pizza_7.png" alt="Pizza" class="card-image">
                     <div class="card-content">
                         <div class="card-header">
@@ -395,6 +400,7 @@
             <button class="carousel-btn left" onclick="slideLeft()">&#9664;</button>
             <div class="carousel">
                 <div class="carousel-track">
+                    
                     <div class="slider-card">
                         <img src="./assets/img/pizza_1.png" alt="Pizza">
                         <h3>Home Made Pizza</h3>
@@ -429,8 +435,26 @@
             </div>
             <button class="carousel-btn right" onclick="slideRight()">&#9654;</button>
         </div>
-        <button class="request-dish-btn">Request a Dish</button>
+        <button id="request-dish" class="request-dish-btn">Request a Dish</button>
     </section>
+
+    <!-- Request dish Modal Structure -->
+    <div id="request-dish-modal" class="dish-modal" style="display: none;">
+        <div class="dish-modal-content">
+            <!-- Add your modal content here, e.g., cart items, images, etc. -->
+            <h1 class="request-dish-heading">Request a Dish</h1>
+            <div class="dish-model-input-details">
+                <div class="name-section">Name*</div>
+                <input class="dish-modal-name" classtype="text" placeholder="Enter name of the dish">
+                <div class="dish-modal-upload-image">Upload an image</div>
+                <input class="dish-modal-upload-image-input" classtype="text" placeholder="paste a URL">
+            </div>
+            <div class="dish-model-button-section">
+                <button id="close-dish-model-cancel" class="close-dish-model-cancel-button">Cancel</button>
+                <button id="close-dish-modal-submit" class="close-dish-modal-submit-button">Submit Request</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Video Section -->
 
@@ -492,13 +516,28 @@
                 <img src="./assets/svg/icon_instagram.svg" alt="Instagram Icon">
             </a>
         </div>
-        
-    </footer>
 
-    <script>
-        // JavaScript code can be added here if needed
-        console.log("Welcome to JTGeats!");
-    </script>
+    </footer>
 </body>
+<script>
+    document.getElementById('request-dish').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default action of the link
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('request-dish-modal').style.display = 'block'; // Show the modal
+        document.body.style.overflow = 'hidden'; // Block page scroll
+    });
+
+    // Close the modal when the cancel button is clicked
+    document.getElementById('close-dish-model-cancel').addEventListener('click', function () {
+        document.getElementById('request-dish-modal').style.display = 'none'; // Hide the modal
+        document.body.style.overflow = 'auto'; // Enable page scroll
+    });
+
+    // Close the modal when the submit button is clicked
+    document.getElementById('close-dish-modal-submit').addEventListener('click', function () {
+        document.getElementById('request-dish-modal').style.display = 'none'; // Hide the modal
+        document.body.style.overflow = 'auto'; // Enable page scroll
+    });
+</script>
 
 </html>

@@ -15,4 +15,4 @@ JTGEATS is a food delivery platform designed to provide a seamless and efficient
    ```bash
    git clone https://github.com/sspabhishek/JTGEATS.git
 ## Live Demo
-Check out the live demo here: [JTGEATS Live Demo](https://sspabhishek.github.io/JTGEATS/)
+Check out the live demo here: [JTGEATS Live Demo](https://youtu.be/LBTxB8uOWAY?si=irWwfLi_9rl_MIzb)
